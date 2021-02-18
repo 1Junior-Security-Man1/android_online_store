@@ -1,4 +1,7 @@
-import 'package:android_online_store/auth.dart';
+import 'package:android_online_store/Screen/landing.dart';
+
+import 'Screen/home.dart';
+import 'file:///C:/Users/USER/AndroidStudioProjects/android_online_store/lib/Screen/auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +21,7 @@ class MyApp extends StatelessWidget {
         ),
         backgroundColor: Colors.white,
       ),
-      home: AuthorrizationPageState(),
+      home: LandingPage(),
     );
   }
 }

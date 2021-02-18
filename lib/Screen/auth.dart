@@ -1,5 +1,6 @@
+import 'package:android_online_store/Screen/home.dart';
 import 'package:android_online_store/main.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:android_online_store/user.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -15,6 +16,8 @@ class _AuthorrizationPageStateState extends State<AuthorrizationPageState> {
   TextEditingController _passwordController = TextEditingController();
   String _email;
   String _password;
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -93,6 +96,12 @@ class _AuthorrizationPageStateState extends State<AuthorrizationPageState> {
       );
     }
 
+    void _loginButonAction() async{
+      _email = _emaleController.text;
+      _password = _passwordController.text;
+      if (_email.isEmpty || _password.isEmpty) return;
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -101,13 +110,13 @@ class _AuthorrizationPageStateState extends State<AuthorrizationPageState> {
               fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white),
         ),
         //Цвет сендвича
-        iconTheme: IconThemeData(color: Colors.white,size: 90),
+        iconTheme: IconThemeData(color: Colors.white, size: 90),
       ),
       backgroundColor: Colors.white,
       body: Column(
         children: <Widget>[
           _logo(),
-          _form('', () {}),
+          _form('', _loginButonAction),
           Column(
             children: <Widget>[
               MaterialButton(
@@ -125,7 +134,7 @@ class _AuthorrizationPageStateState extends State<AuthorrizationPageState> {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                           //ВРЕМЕННО!!!
-                          builder: (context) => MyApp()),
+                          builder: (context) => HomePage()),
                     );
                   }),
             ],
@@ -159,73 +168,64 @@ class _AuthorrizationPageStateState extends State<AuthorrizationPageState> {
         ],
       ),
       drawer: Drawer(
-          child: ListView(
-            children: <Widget>[
-              DrawerHeader(
-                margin: EdgeInsets.zero,
-                padding: EdgeInsets.zero,
-                child: UserAccountsDrawerHeader(
-                  decoration: BoxDecoration(color: Colors.orange),
-                  // margin: EdgeInsets.only(right: 15),
-                  accountName: Text('Мистер Твистер'),
-                  accountEmail: Text("home@dartflutter.ru"),
-                  currentAccountPicture: Container(
-                    margin: EdgeInsets.only(right: 5),
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: Image.network('https://www.zastavki.com/pictures/1920x1200/2011/Animals_Cats_Cat_in_the_glasses_032992_.jpg').image,
-                        fit: BoxFit.cover,
-                      ),
-                      shape: BoxShape.circle,
-                      color: Colors.white,
+        child: ListView(
+          children: <Widget>[
+            DrawerHeader(
+              margin: EdgeInsets.zero,
+              padding: EdgeInsets.zero,
+              child: UserAccountsDrawerHeader(
+                decoration: BoxDecoration(color: Colors.orange),
+                // margin: EdgeInsets.only(right: 15),
+                accountName: Text('Мистер Твистер'),
+                accountEmail: Text("home@dartflutter.ru"),
+                currentAccountPicture: Container(
+                  margin: EdgeInsets.only(right: 5),
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: Image.network(
+                          'https://www.zastavki.com/pictures/1920x1200/2011/Animals_Cats_Cat_in_the_glasses_032992_.jpg')
+                          .image,
+                      fit: BoxFit.cover,
                     ),
+                    shape: BoxShape.circle,
+                    color: Colors.white,
                   ),
                 ),
               ),
-              ListTile(
-                  contentPadding: EdgeInsets.only(left: 10),
-                  title: Text("Смена пользовотеля"),
-                  leading: Icon(Icons.supervised_user_circle),
-                  onTap: () {}),
-              ListTile(
-                  contentPadding: EdgeInsets.only(left: 10),
-                  title: Text("О себе"),
-                  leading: Icon(Icons.account_box),
-                  onTap: () {}),
-              ListTile(
-                  title: Text("Настройки"),
-                  leading: Icon(Icons.settings),
-                  contentPadding: EdgeInsets.only(left: 10),
-                  onTap: () {}),
-              ListTile(
-                  contentPadding: EdgeInsets.only(left: 10),
-                  title: Text("Выход"),
-                  leading: Icon(Icons.exit_to_app),
-                  onTap: () {}),
-            ],
-          ),
+            ),
+            ListTile(
+                contentPadding: EdgeInsets.only(left: 10),
+                title: Text("Смена пользовотеля"),
+                leading: Icon(Icons.supervised_user_circle),
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                        builder: (context) => AuthorrizationPageState()),
+                  );
+                }),
+            ListTile(
+                contentPadding: EdgeInsets.only(left: 10),
+                title: Text("О себе"),
+                leading: Icon(Icons.account_box),
+                onTap: () {}),
+            ListTile(
+                title: Text("Настройки"),
+                leading: Icon(Icons.settings),
+                contentPadding: EdgeInsets.only(left: 10),
+                onTap: () {}),
+            ListTile(
+                contentPadding: EdgeInsets.only(left: 10),
+                title: Text("Выход"),
+                leading: Icon(Icons.exit_to_app),
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                        builder: (context) => AuthorrizationPageState()),
+                  );
+                }),
+          ],
         ),
+      ),
     );
   }
-  // void _loginButonAction() async{
-  //   _email = _emaleController.text;
-  //   _password = _passwordController.text;
-  //   if (_email.isEmpty || _password.isEmpty) return;
-  //   User user =  await _authService.signInWithEmailAndPassword(_email.trim(),_password.trim());
-  //   if(user == null){
-  //     Fluttertoast.showToast(
-  //         msg: "Can`t SignIn you! Please check your email/password",
-  //         toastLength: Toast.LENGTH_SHORT,
-  //         gravity: ToastGravity.CENTER,
-  //         backgroundColor: Colors.red,
-  //         textColor: Colors.white,
-  //         fontSize: 16.0
-  //     );
-  //   }else{
-  //     _emaleController.clear();
-  //     _passwordController.clear();
-  //   }
-  //   _emaleController.clear();
-  //   _passwordController.clear();
-  // }
 }
