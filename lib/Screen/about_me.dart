@@ -1,5 +1,4 @@
 import 'package:android_online_store/Screen/auth.dart';
-import 'package:android_online_store/componets/avatar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -32,7 +31,7 @@ class AboutMe extends StatelessWidget {
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       image: Image.network(
-                              'https://www.zastavki.com/pictures/1920x1200/2011/Animals_Cats_Cat_in_the_glasses_032992_.jpg')
+                          'https://www.zastavki.com/pictures/1920x1200/2011/Animals_Cats_Cat_in_the_glasses_032992_.jpg')
                           .image,
                       fit: BoxFit.cover,
                     ),
@@ -82,37 +81,45 @@ class AboutMe extends StatelessWidget {
     );
   }
 }
+
 class AboutM extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(left: 23, top: 20),
+      height: 220,
+      width: 370,
+      color: Colors.orange,
+      padding: EdgeInsets.only(right: 220, top: 10),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Container(
-            margin: EdgeInsets.only(left: 23, top: 20),
-            height: 220,
-            width: 370,
-            color: Colors.orange,
-            padding: EdgeInsets.only(bottom: 100, right: 220, top: 20),
-            child: CircleAvatar(
-              backgroundImage: NetworkImage('https://www.zastavki.com/pictures/1920x1200/2011/Animals_Cats_Cat_in_the_glasses_032992_.jpg'),
+          GestureDetector(
+            child: Column(
+              children: [
+                Container(
+                  padding: EdgeInsets.only(top: 10,),
+                  width: 130,
+                  height: 130,
+                  child: CircleAvatar(
+                    backgroundImage: NetworkImage(
+                        'https://www.zastavki.com/pictures/1920x1200/2011/Animals_Cats_Cat_in_the_glasses_032992_.jpg'),
+                  ),
+                ),
+                SizedBox(
+                  height: 25,
+                ),
+                Container(
+                  child: Text('Мистер Твистер', style: TextStyle(fontSize: 16, color: Colors.black),),
+                ),
+                //Divider(color: Colors.black,),
+                Container(
+                  padding: EdgeInsets.only(left: 15),
+                  child: Text('home@dartflutter.ru', style: TextStyle(fontSize: 15, color: Colors.black),),
+                ),
+              ],
             ),
-            // margin: EdgeInsets.only(right: 100),
-            // decoration: BoxDecoration(
-            //   image: DecorationImage(
-            //     scale: 100,
-            //     image: Image.network(
-            //         'https://www.zastavki.com/pictures/1920x1200/2011/Animals_Cats_Cat_in_the_glasses_032992_.jpg')
-            //         .image,
-            //     fit: BoxFit.cover,
-            //   ),
-            //   shape: BoxShape.circle,
-            //   color: Colors.white,
-            // ),
-            // ],
-          ),
-          Container(
-            child: Text('Мистер Твистер'),
           ),
         ],
       ),

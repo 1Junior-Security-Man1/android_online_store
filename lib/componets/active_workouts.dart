@@ -2,6 +2,7 @@ import 'package:android_online_store/componets/catalog.dart';
 import 'package:android_online_store/componets/categories.dart';
 import 'package:android_online_store/componets/item_card.dart';
 import 'package:android_online_store/componets/item_categories.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -14,14 +15,17 @@ class ActiveWorkouts extends StatelessWidget {
     return Scaffold(
       body: ListView(
         children: [
+      //     Container(
+      //       padding: EdgeInsets.only(left: 12, top: 10),
+      //     child: Text ("В топе", style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black),
+      // ),
+      // ),
           Container(
-            padding: EdgeInsets.only(top: 10),
+            //padding: EdgeInsets.only(top: 5),
             child: ListTile(
               title: Text ("В топе", style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black),
               ),
-              //subtitle: Text("Боьше чем 100 видов напитков", style: TextStyle(fontSize: 16),
-              ),
-              //trailing: Icon(Icons.panorama_horizontal),
+            ),
             ),
           Container(
             padding: const EdgeInsets.all(5.0),
@@ -34,6 +38,10 @@ class ActiveWorkouts extends StatelessWidget {
                 child: ItemCard(),
               ),
             ),
+          ),
+          Container(
+            padding: EdgeInsets.only(left: 12),
+            child: Text('Категории',style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),),
           ),
           Container(
             padding: const EdgeInsets.all(5.0),

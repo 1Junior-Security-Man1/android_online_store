@@ -37,8 +37,8 @@ class MyApp extends StatelessWidget {
           ),
           backgroundColor: Colors.white,
         ),
-        //home: LandingPage(),
-        home: AboutMe(),
+        //home:  AboutMe(),
+        home: LandingPage(),
       ),
     );
   }
