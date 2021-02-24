@@ -1,41 +1,21 @@
-import 'package:android_online_store/Screen/about_me.dart';
 import 'package:android_online_store/Screen/auth.dart';
-import 'package:android_online_store/componets/active_workouts.dart';
-import 'package:android_online_store/componets/saved_screen.dart';
+import 'package:android_online_store/componets/avatar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatefulWidget {
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  int sectionIndex = 0;
-
+class AboutMe extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Менялка',
+          'О себе',
           style: TextStyle(
-              //fontWeight: FontWeight.bold,
-              fontSize: 25,
-              color: Colors.white),
+              fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white),
         ),
         iconTheme: IconThemeData(color: Colors.white, size: 90),
-        actions: [
-          FlatButton.icon(
-            icon: Icon(
-              Icons.search,
-              size: 27,
-              color: Colors.white,
-            ),
-            label: SizedBox.shrink(),
-          ),
-        ],
       ),
-      body: sectionIndex == 0 ? ActiveWorkouts() : SavedScreen(),
+      body: AboutM(),
       drawer: Drawer(
         child: ListView(
           children: <Widget>[
@@ -78,8 +58,7 @@ class _HomePageState extends State<HomePage> {
                 leading: Icon(Icons.account_box),
                 onTap: () {
                   Navigator.of(context).push(
-                    MaterialPageRoute(
-                        builder: (context) => AboutMe()),
+                    MaterialPageRoute(builder: (context) => AboutMe()),
                   );
                 }),
             ListTile(
@@ -100,38 +79,42 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home,
-              color: Colors.black54,
-              size: 28,
+    );
+  }
+}
+class AboutM extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        children: [
+          Container(
+            margin: EdgeInsets.only(left: 23, top: 20),
+            height: 220,
+            width: 370,
+            color: Colors.orange,
+            padding: EdgeInsets.only(bottom: 100, right: 220, top: 20),
+            child: CircleAvatar(
+              backgroundImage: NetworkImage('https://www.zastavki.com/pictures/1920x1200/2011/Animals_Cats_Cat_in_the_glasses_032992_.jpg'),
             ),
-            title: Text(
-              'home',
-              style: TextStyle(color: Colors.black54, fontSize: 17),
-            ),
+            // margin: EdgeInsets.only(right: 100),
+            // decoration: BoxDecoration(
+            //   image: DecorationImage(
+            //     scale: 100,
+            //     image: Image.network(
+            //         'https://www.zastavki.com/pictures/1920x1200/2011/Animals_Cats_Cat_in_the_glasses_032992_.jpg')
+            //         .image,
+            //     fit: BoxFit.cover,
+            //   ),
+            //   shape: BoxShape.circle,
+            //   color: Colors.white,
+            // ),
+            // ],
           ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.favorite,
-              color: Colors.black54,
-              size: 27,
-            ),
-            title: Text(
-              'love',
-              style: TextStyle(color: Colors.black54, fontSize: 17),
-            ),
+          Container(
+            child: Text('Мистер Твистер'),
           ),
         ],
-        currentIndex: sectionIndex,
-        selectedItemColor: Colors.white,
-        onTap: (int index) {
-          setState(() {
-            sectionIndex = index;
-          });
-        },
       ),
     );
   }

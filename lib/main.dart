@@ -1,4 +1,8 @@
+import 'package:android_online_store/Screen/about_me.dart';
 import 'package:android_online_store/Screen/landing.dart';
+import 'package:android_online_store/componets/catalog.dart';
+import 'package:android_online_store/componets/categories.dart';
+import 'package:provider/provider.dart';
 
 import 'Screen/home.dart';
 import 'file:///C:/Users/USER/AndroidStudioProjects/android_online_store/lib/Screen/auth.dart';
@@ -12,16 +16,30 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-        theme: ThemeData(
-        primarySwatch: Colors.orange,
-        textTheme: TextTheme(
-        title: TextStyle(color: Colors.white),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<ProductDataProvider>(
+          create: (context) => ProductDataProvider(),
         ),
-        backgroundColor: Colors.white,
+        ChangeNotifierProvider<ProductDataProvider1>(
+          create: (context) => ProductDataProvider1(),
+        ),
+        // ChangeNotifierProvider<CartDataProvider>(
+        //   create: (context) => CartDataProvider(),
+        // ),
+      ],
+      child: MaterialApp(
+        title: 'Flutter Demo',
+          theme: ThemeData(
+          primarySwatch: Colors.orange,
+          textTheme: TextTheme(
+          title: TextStyle(color: Colors.white),
+          ),
+          backgroundColor: Colors.white,
+        ),
+        //home: LandingPage(),
+        home: AboutMe(),
       ),
-      home: LandingPage(),
     );
   }
 }

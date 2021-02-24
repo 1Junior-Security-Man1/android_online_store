@@ -1,3 +1,4 @@
+import 'package:android_online_store/Screen/about_me.dart';
 import 'package:android_online_store/Screen/home.dart';
 import 'package:android_online_store/main.dart';
 import 'package:android_online_store/user.dart';
@@ -207,7 +208,12 @@ class _AuthorrizationPageStateState extends State<AuthorrizationPageState> {
                 contentPadding: EdgeInsets.only(left: 10),
                 title: Text("О себе"),
                 leading: Icon(Icons.account_box),
-                onTap: () {}),
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                        builder: (context) => AboutMe()),
+                  );
+                }),
             ListTile(
                 title: Text("Настройки"),
                 leading: Icon(Icons.settings),
