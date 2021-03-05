@@ -26,7 +26,7 @@ class ProductDataProvider1 with ChangeNotifier {
       id: 'p1',
       title: 'Машины',
       imgUrl:
-      'https://image.freepik.com/free-icon/car-symbol-2_318-10292.jpg',
+      'https://cdn.icon-icons.com/icons2/908/PNG/512/vintage-car-silhouette-of-side-view_icon-icons.com_70578.png',
       color: '0xF000000',
     ),
     Categories(
@@ -40,7 +40,7 @@ class ProductDataProvider1 with ChangeNotifier {
       id: 'p4',
       title: 'Инвентарь',
       imgUrl:
-      'https://w7.pngwing.com/pngs/147/480/png-transparent-computer-icons-sport-indiana-fitness-club-fitness-centre-dumbbell-dumbbell-icon-angle-hand-logo.png',
+      'https://c0.klipartz.com/pngpicture/147/480/gratis-png-iconos-de-computadora-deporte-indiana-gimnasio-club-gimnasio-mancuerna-icono-de-mancuerna.png',
       color: '0xF000000',
     ),
   ];

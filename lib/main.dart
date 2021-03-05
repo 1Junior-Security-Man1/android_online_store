@@ -1,5 +1,6 @@
 import 'package:android_online_store/Screen/about_me.dart';
 import 'package:android_online_store/Screen/landing.dart';
+import 'package:android_online_store/componets/auth_test.dart';
 import 'package:android_online_store/componets/catalog.dart';
 import 'package:android_online_store/componets/categories.dart';
 import 'package:provider/provider.dart';
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
         // ),
       ],
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Менялка',
           theme: ThemeData(
           primarySwatch: Colors.orange,
           textTheme: TextTheme(
@@ -38,13 +39,14 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.white,
         ),
         //home:  AboutMe(),
-        home: LandingPage(),
+        //home: LandingPage(),
+        home: MyApp1(),
       ),
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage12 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

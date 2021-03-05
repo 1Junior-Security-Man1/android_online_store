@@ -15,18 +15,23 @@ class ActiveWorkouts extends StatelessWidget {
     return Scaffold(
       body: ListView(
         children: [
-      //     Container(
-      //       padding: EdgeInsets.only(left: 12, top: 10),
-      //     child: Text ("В топе", style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black),
-      // ),
-      // ),
+          //     Container(
+          //       padding: EdgeInsets.only(left: 12, top: 10),
+          //     child: Text ("В топе", style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black),
+          // ),
+          // ),
           Container(
             //padding: EdgeInsets.only(top: 5),
             child: ListTile(
-              title: Text ("В топе", style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black),
+              title: Text(
+                "В топе",
+                style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black),
               ),
             ),
-            ),
+          ),
           Container(
             padding: const EdgeInsets.all(5.0),
             height: 250,
@@ -41,7 +46,10 @@ class ActiveWorkouts extends StatelessWidget {
           ),
           Container(
             padding: EdgeInsets.only(left: 12),
-            child: Text('Категории',style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),),
+            child: Text(
+              'Категории',
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            ),
           ),
           Container(
             padding: const EdgeInsets.all(5.0),
