@@ -1,4 +1,5 @@
 import 'package:android_online_store/Screen/about_me.dart';
+import 'package:android_online_store/Screen/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
@@ -17,73 +18,20 @@ class _AuthorrizationPageStateState extends State<AuthorrizationPageState> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   TextEditingController _emaleController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
-  String _email;
-  String _password;
   bool _success;
   String _userEmail;
 
-  // void _loginButonAction() async{
-  //   _email = _emaleController.text;
-  //   _password = _passwordController.text;
-  //   if (_email.isEmpty || _password.isEmpty) return;
-  //   final User user = (await
-  //   _auth.createUserWithEmailAndPassword(
-  //     email: _emaleController.text,
-  //     password: _passwordController.text,
-  //   )
-  //   ).user;
-  //   if(user == null){
-  //     Fluttertoast.showToast(
-  //         msg: "Can`t SignIn you! Please check your email/password",
-  //         toastLength: Toast.LENGTH_SHORT,
-  //         gravity: ToastGravity.CENTER,
-  //         backgroundColor: Colors.red,
-  //         textColor: Colors.white,
-  //         fontSize: 16.0
-  //     );
-  //   }else{
-  //     _emaleController.clear();
-  //     _passwordController.clear();
-  //   }
-  //   _emaleController.clear();
-  //   _passwordController.clear();
+  // void auth()async{
+  //   FirebaseAuth.instance
+  //       .authStateChanges()
+  //       .listen((User user) {
+  //     if (user == null) {
+  //       print('Пользователь в настоящее время вышел из системы!');
+  //     } else {
+  //       print('User is signed in!');
+  //     }
+  //   });
   // }
-  //
-  // void _registerButonAction() async{
-  //   final User user = (await
-  //   _auth.createUserWithEmailAndPassword(
-  //     email: _emaleController.text,
-  //     password: _passwordController.text,
-  //   )
-  //   ).user;
-  //   if(user == null){
-  //     Fluttertoast.showToast(
-  //         msg: "Can`t Register you! Please check your email/password",
-  //         toastLength: Toast.LENGTH_SHORT,
-  //         gravity: ToastGravity.CENTER,
-  //         backgroundColor: Colors.red,
-  //         textColor: Colors.white,
-  //         fontSize: 16.0
-  //     );
-  //   }else{
-  //     _emaleController.clear();
-  //     _passwordController.clear();
-  //   }
-  //   _emaleController.clear();
-  //   _passwordController.clear();
-  // }
-
-  void auth()async{
-    FirebaseAuth.instance
-        .authStateChanges()
-        .listen((User user) {
-      if (user == null) {
-        print('User is currently signed out!');
-      } else {
-        print('User is signed in!');
-      }
-    });
-  }
 
   void _signInWithEmailAndPassword() async {
     WidgetsFlutterBinding.ensureInitialized();
@@ -92,19 +40,26 @@ class _AuthorrizationPageStateState extends State<AuthorrizationPageState> {
       email: _emaleController.text,
       password: _passwordController.text,
     )).user;
-
     if (user != null) {
       setState(() {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            //ВРЕМЕННО!!!
+              builder: (context) => HomePage()),
+        );
         _success = true;
         _userEmail = user.email;
       });
     } else {
+      _emaleController.clear();
+      _passwordController.clear();
       setState(() {
         _success = false;
       });
     }
+    _emaleController.clear();
+    _passwordController.clear();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -203,10 +158,14 @@ class _AuthorrizationPageStateState extends State<AuthorrizationPageState> {
           _userEmail = user.email;
         });
       } else {
+        _emaleController.clear();
+        _passwordController.clear();
         setState(() {
           _success = true;
         });
       }
+      _emaleController.clear();
+      _passwordController.clear();
     }
 
     return Scaffold(
