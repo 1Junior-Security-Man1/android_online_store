@@ -39,8 +39,8 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.white,
         ),
         //home:  AboutMe(),
-        //home: LandingPage(),
-        home: MyApp1(),
+        home: LandingPage(),
+        // home: MyApp1(),
       ),
     );
   }
