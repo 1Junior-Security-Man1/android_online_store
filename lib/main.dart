@@ -6,7 +6,6 @@ import 'package:android_online_store/componets/categories.dart';
 import 'package:provider/provider.dart';
 
 import 'Screen/home.dart';
-import 'file:///C:/Users/USER/AndroidStudioProjects/android_online_store/lib/Screen/auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
