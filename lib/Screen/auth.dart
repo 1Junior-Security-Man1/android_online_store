@@ -18,29 +18,32 @@ class _AuthorrizationPageStateState extends State<AuthorrizationPageState> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   TextEditingController _emaleController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
+  String _email;
+  String _password;
   bool _success;
   String _userEmail;
-
-  // void auth()async{
-  //   FirebaseAuth.instance
-  //       .authStateChanges()
-  //       .listen((User user) {
-  //     if (user == null) {
-  //       print('Пользователь в настоящее время вышел из системы!');
-  //     } else {
-  //       print('User is signed in!');
-  //     }
-  //   });
-  // }
 
   void _signInWithEmailAndPassword() async {
     WidgetsFlutterBinding.ensureInitialized();
     await Firebase.initializeApp();
+    _email = _emaleController.text;
+    _password = _passwordController.text;
+    if (_email.isEmpty || _password.isEmpty) return;
     final User user = (await _auth.signInWithEmailAndPassword(
-      email: _emaleController.text,
-      password: _passwordController.text,
+      email: _emaleController.text.trim(),
+      password: _passwordController.text.trim(),
     )).user;
-    if (user != null) {
+    /// Временно
+    if (user == null) {
+      Fluttertoast.showToast(
+          msg: "You are successfully logged in!",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0
+      );
+      print('nice!');
       setState(() {
         Navigator.of(context).push(
           MaterialPageRoute(
@@ -51,6 +54,15 @@ class _AuthorrizationPageStateState extends State<AuthorrizationPageState> {
         _userEmail = user.email;
       });
     } else {
+      Fluttertoast.showToast(
+          msg: "Can`t Register you! Please check your email/password",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0
+      );
+      print('her tam');
       _emaleController.clear();
       _passwordController.clear();
       setState(() {
@@ -201,7 +213,7 @@ class _AuthorrizationPageStateState extends State<AuthorrizationPageState> {
                             fontSize: 20,
                             color: Colors.white),
                       ),
-                      onPressed: () async {
+                      onPressed: () {
                         _signInWithEmailAndPassword();
                       },
                     ),
@@ -234,13 +246,12 @@ class _AuthorrizationPageStateState extends State<AuthorrizationPageState> {
                             color: Colors.white),
                       ),
                       // TODO исправить
-                      onPressed: () async {
+                      onPressed: () {
                         _register();
                       },
                     ),
                   ],
                 ),
-                //padding: const EdgeInsets.only(bottom: 14),
               ),
             ],
           ),
